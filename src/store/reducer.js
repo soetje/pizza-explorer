@@ -1,6 +1,11 @@
 const initialState = {
   user: {
-    name: "Helva",
+    name: "Imre",
+    favourites: [
+      161235,
+      67283
+    ],
+    darkMode: true, 
   },
   pizzas: [
     {
@@ -44,8 +49,35 @@ export default function reducer(state = initialState, action) {
         ],
       }
     }
+
+    case "TOGGLE_FAVOURITE": {
+      // pizzaId.
+      const pizzaId = action.payload;
+      // is it a favourite already?
+      const isFavourite = state.user.favourites.includes(pizzaId);
+
+      const newFavourite = isFavourite
+        ? state.user.favourites.filter(id => id !== pizzaId)
+        : [...state.user.favourites, pizzaId];
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favourites: newFavourite,
+        },
+      };
+    }
+
+    case "TOGGLE_DARK_MODE": {
+      return {
+        ...state,
+        user: { ...state.user, darkMode: !state.user.darkMode },
+      };
+    }
     default: {
-      return state
+      return state;
     }
   }
+  
 }

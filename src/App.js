@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react"
+import PizzaList from "./components/PizzaList"
+import AddPizzaForm from "./components/AddPizzaForm"
 
 function App() {
   return (
     <div>
-    <h1> Pizza explorer</h1>
+      <PizzaList />
+      <AddPizzaForm />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
